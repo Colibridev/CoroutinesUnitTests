@@ -41,9 +41,11 @@ interface ContentView {
 }
 
 // Presenter class
-class ContentPresenter(private val repository: ContentRepository,
-                       private val view: ContentView,
-                       private val contextPool: CoroutineContextProvider = CoroutineContextProvider()) {
+class ContentPresenter(
+        private val repository: ContentRepository,
+        private val view: ContentView,
+        private val contextPool: CoroutineContextProvider = CoroutineContextProvider()
+) {
 
     fun onViewInit() {
         launch(contextPool.Main) {
@@ -56,7 +58,7 @@ class ContentPresenter(private val repository: ContentRepository,
     }
 }
 
-open class CoroutineContextProvider() {
+open class CoroutineContextProvider {
     open val Main: CoroutineContext by lazy { UI }
     open val IO: CoroutineContext by lazy { CommonPool }
 }
